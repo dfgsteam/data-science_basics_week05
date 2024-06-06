@@ -2,12 +2,18 @@ def ASSIGNMENT(new_list, i, old_list, j):
     new_list[i] = old_list[j]
 
 
+"""
+Sorts a list in ascending order using the merge sort algorithm.
+
+Parameters:
+- list_to_sort_by_merge (list): The list to be sorted.
+
+Returns:
+- None. The list is sorted in-place.
+
+"""
 def mergeSort(list_to_sort_by_merge):
-    if (
-        len(list_to_sort_by_merge) > 1
-        and not len(list_to_sort_by_merge) < 1
-        and len(list_to_sort_by_merge) != 0
-    ):
+    if len(list_to_sort_by_merge) > 1:
         mid = len(list_to_sort_by_merge) // 2
         left = list_to_sort_by_merge[:mid]
         right = list_to_sort_by_merge[mid:]
@@ -21,19 +27,23 @@ def mergeSort(list_to_sort_by_merge):
 
         while l < len(left) and r < len(right):
             if left[l] <= right[r]:
-                ASSIGNMENT(new_list=list_to_sort_by_merge, i=i, old_list=left, j=l)
+                # Assign the value from the left list to the merged list
+                list_to_sort_by_merge[i] = left[l]
                 l += 1
             else:
-                ASSIGNMENT(new_list=list_to_sort_by_merge, i=i, old_list=right, j=r)
+                # Assign the value from the right list to the merged list
+                list_to_sort_by_merge[i] = right[r]
                 r += 1
             i += 1
 
         while l < len(left):
+            # Assign the remaining values from the left list to the merged list
             list_to_sort_by_merge[i] = left[l]
             l += 1
             i += 1
 
         while r < len(right):
+            # Assign the remaining values from the right list to the merged list
             list_to_sort_by_merge[i] = right[r]
             r += 1
             i += 1
