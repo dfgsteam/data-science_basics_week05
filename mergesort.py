@@ -1,60 +1,53 @@
-import matplotlib.pyplot as plt
-import numpy as np
+def ASSIGNMENT(new_list, i, old_list, j):
+    new_list[i] = old_list[j]
 
-def assign_value(destination_list, dest_index, source_list, src_index):
-    """
-    Assigns the value from source_list[src_index] to destination_list[dest_index].
 
-    Args:
-        destination_list (list): The list to which the value is assigned.
-        dest_index (int): The index in the destination list where the value is assigned.
-        source_list (list): The list from which the value is taken.
-        src_index (int): The index in the source list from which the value is taken.
-    """
-    destination_list[dest_index] = source_list[src_index]
+"""
+Sorts a list in ascending order using the merge sort algorithm.
 
-def merge_sort(input_list):
-    """
-    Sorts a list in ascending order using the merge sort algorithm.
+Parameters:
+- list_to_sort_by_merge (list): The list to be sorted.
 
-    Args:
-        input_list (list): The list to be sorted.
+Returns:
+- None. The list is sorted in-place.
 
-    Returns:
-        list: The sorted list.
-    """
-    if len(input_list) > 1:
-        mid = len(input_list) // 2
-        left_half = input_list[:mid]
-        right_half = input_list[mid:]
+"""
+def mergeSort(list_to_sort_by_merge):
+    if len(list_to_sort_by_merge) > 1:
+        mid = len(list_to_sort_by_merge) // 2
+        left = list_to_sort_by_merge[:mid]
+        right = list_to_sort_by_merge[mid:]
 
-        # Recursively sort both halves
-        merge_sort(left_half)
-        merge_sort(right_half)
+        mergeSort(left)
+        mergeSort(right)
 
-        i = j = k = 0
+        l = 0
+        r = 0
+        i = 0
 
-        # Merge the sorted halves
-        while i < len(left_half) and j < len(right_half):
-            if left_half[i] <= right_half[j]:
-                input_list[k] = left_half[i]
-                i += 1
+        while l < len(left) and r < len(right):
+            if left[l] <= right[r]:
+                # Assign the value from the left list to the merged list
+                list_to_sort_by_merge[i] = left[l]
+                l += 1
             else:
-                input_list[k] = right_half[j]
-                j += 1
-            k += 1
+                # Assign the value from the right list to the merged list
+                list_to_sort_by_merge[i] = right[r]
+                r += 1
+            i += 1
 
-        # Copy remaining elements of left_half, if any
-        while i < len(left_half):
-            input_list[k] = left_half[i]
+        while l < len(left):
+            # Assign the remaining values from the left list to the merged list
+            list_to_sort_by_merge[i] = left[l]
+            l += 1
             i += 1
             k += 1
 
-        # Copy remaining elements of right_half, if any
-        while j < len(right_half):
-            input_list[k] = right_half[j]
-            j += 1
-            k += 1
+        while r < len(right):
+            # Assign the remaining values from the right list to the merged list
+            list_to_sort_by_merge[i] = right[r]
+            r += 1
+            i += 1
 
     return input_list
 
@@ -86,3 +79,11 @@ if __name__ == "__main__":
     example_list = [54, 26, 93, 17, 77, 31, 44, 55, 20]
     visualize_sorting(example_list)
 
+my_list = [54, 26, 93, 17, 77, 31, 44, 55, 20]
+x = range(len(my_list))
+plt.plot(x, my_list)
+plt.show()
+mergeSort(my_list)
+x = range(len(my_list))
+plt.plot(x, my_list)
+plt.show() 
