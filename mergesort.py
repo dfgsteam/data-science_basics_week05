@@ -41,6 +41,7 @@ def mergeSort(list_to_sort_by_merge):
             list_to_sort_by_merge[i] = left[l]
             l += 1
             i += 1
+            k += 1
 
         while r < len(right):
             # Assign the remaining values from the right list to the merged list
@@ -48,8 +49,35 @@ def mergeSort(list_to_sort_by_merge):
             r += 1
             i += 1
 
+    return input_list
 
-import matplotlib.pyplot as plt
+def visualize_sorting(input_list):
+    """
+    Visualizes the sorting process using matplotlib.
+
+    Args:
+        input_list (list): The list to be sorted and visualized.
+    """
+    x = np.arange(len(input_list))
+
+    # Sort the list
+    sorted_list = merge_sort(input_list.copy())
+
+    # Plot the unsorted and sorted list in the same diagram
+    plt.figure(figsize=(10, 6))
+    plt.plot(x, input_list, label='Unsorted', color='blue', marker='o')
+    plt.plot(x, sorted_list, label='Sorted', color='green', marker='o')
+    plt.xlabel('Index')
+    plt.ylabel('Value')
+    plt.title('Visualization of Merge Sort')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+# Example usage
+if __name__ == "__main__":
+    example_list = [54, 26, 93, 17, 77, 31, 44, 55, 20]
+    visualize_sorting(example_list)
 
 my_list = [54, 26, 93, 17, 77, 31, 44, 55, 20]
 x = range(len(my_list))
