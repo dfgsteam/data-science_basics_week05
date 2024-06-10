@@ -1,3 +1,6 @@
+from matplotlib import pyplot as plt
+import numpy as np
+
 def ASSIGNMENT(new_list, i, old_list, j):
     new_list[i] = old_list[j]
 
@@ -49,7 +52,7 @@ def mergeSort(list_to_sort_by_merge):
             r += 1
             i += 1
 
-    return input_list
+    return list_to_sort_by_merge
 
 def visualize_sorting(input_list):
     """
@@ -61,7 +64,7 @@ def visualize_sorting(input_list):
     x = np.arange(len(input_list))
 
     # Sort the list
-    sorted_list = merge_sort(input_list.copy())
+    sorted_list = mergeSort(input_list.copy())
 
     # Plot the unsorted and sorted list in the same diagram
     plt.figure(figsize=(10, 6))
@@ -78,4 +81,3 @@ def visualize_sorting(input_list):
 if __name__ == "__main__":
     example_list = [54, 26, 93, 17, 77, 31, 44, 55, 20]
     visualize_sorting(example_list)
-
